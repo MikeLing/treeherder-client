@@ -3,7 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 from __future__ import unicode_literals
 
-import httplib
+import requests
 import oauth2 as oauth
 import time
 import logging
@@ -726,9 +726,9 @@ class TreeherderRequest(object):
         # Make the request
         conn = None
         if self.protocol == 'http':
-            conn = httplib.HTTPConnection(self.host, timeout=self.timeout)
+            conn = requests.post(self.host, timeout=self.timeout)
         else:
-            conn = httplib.HTTPSConnection(self.host, timeout=self.timeout)
+            conn = requests.post(self.host, timeout=self.timeout)
 
         conn.request(method, uri, serialized_body, headers)
 
